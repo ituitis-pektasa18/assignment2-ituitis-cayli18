@@ -7,34 +7,38 @@ def create_hash(password):
     pw_bytestring = password.encode()
     return sha256(pw_bytestring).hexdigest()
 ips = []
-def add_ip(a,b):
+def static_content(filepath):
+    return static_file(filepath, root='./')
+def add_ip(a):
     global ips
-    if a in b:
-        a[b] += 1
+    if a in ips:
+        ips[a] += 1
     else:
-        a[b] = 1
+        ips[a] = 1
 def home():
     new_ip = request.headers.get("X-Forwarded-For", "127.0.0.1")
     global ips
-    add_ip(new_ip,ips)
-    tableContent ="""
+    add_ip(new_ip)
+    tablecontent ='''
+    <!DOCTYPE html>
     <html>
-        <body>  
+        <body>
             <tr>
                 <td>%s (new_ip) %s </td>
                 <td>%s (ips[new_ip] %s </td>
             </tr>
         </body>
     </html>
-    """
-    return tableContent
+    '''
+    return tablecontent
 def get_edu():
-    return Path("/index1.html")
+    return Path("index1.html").read_text()
 def create_app():
     app = Bottle()
     app.route("/", "GET", home)
     app.route("/login", "GET", get_edu)
-
     return app
+
+ips = {}
 application = create_app()
 application.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
