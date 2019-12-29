@@ -25,7 +25,7 @@ def home():
         <body>
             <tr>
                 <td>%s (new_ip) %s </td>
-                <td>%s (ips[new_ip] %s </td>
+                <td>%s (ips[new_ip]) %s </td>
             </tr>
         </body>
     </html>
