@@ -18,7 +18,16 @@ def add_ip():
         ips[new_ip] = 1
 def home():
     return Path("index.html").read_text()
-
+def password_page():
+    return template('password', info='')
+def enter_password():
+    password = request.forms.get('pw')
+    if create_hash(password)==user_password:
+        global ip
+        ip = {}
+        return template('password', info='Congrats list cleared.')
+    else:
+        return template('password', info='Password is wrong, please try again.')
 def get_edu():
     global new_ip
     new_ip = request.headers.get("X-Forwarded-For", "127.0.0.1")
@@ -30,6 +39,8 @@ def create_app():
     app.route("/", "GET", home)
     app.route("/index1.html", "GET", get_edu)
     app.route("/static/<filepath:path>", "GET", static_content)
+    app.route("/password", "GET", password_page)
+    app.route("/password", "POST", enter_password)
     return app
 
 ips = {}
