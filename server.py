@@ -9,7 +9,7 @@ def create_hash(password):
 ips = []
 @route("/static/<filename>")
 def static_content(filename):
-    return static_file(filename, root='./static')
+    return static_file(filename, root='./')
 def add_ip():
     global ips
     global new_ip
