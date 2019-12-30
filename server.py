@@ -33,7 +33,7 @@ def get_edu():
     new_ip = request.headers.get("X-Forwarded-For", "127.0.0.1")
     global ips
     add_ip()
-    return template('index2', iplist=ips)
+    return template('index1', iplist=ips)
 def create_app():
     app = Bottle()
     app.route("/", "GET", home)
