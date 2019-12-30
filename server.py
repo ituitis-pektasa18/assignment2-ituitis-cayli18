@@ -30,7 +30,7 @@ def create_app():
     app = Bottle()
     app.route("/", "GET", home)
     app.route("/index1.html", "GET", get_edu)
-    app.route("/static/<filename>", "GET", static_content)
+    app.route("/static/<filepath:path>", "GET", static_content)
     return app
 
 ips = {}
