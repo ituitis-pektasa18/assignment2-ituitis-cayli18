@@ -25,7 +25,6 @@ def get_edu():
     global ips
     add_ip()
     return template('index2', iplist=ips)
-    return Path("index1.html").read_text()
 def create_app():
     app = Bottle()
     app.route("/", "GET", home)
