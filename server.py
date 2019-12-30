@@ -7,9 +7,9 @@ def create_hash(password):
     pw_bytestring = password.encode()
     return sha256(pw_bytestring).hexdigest()
 ips = []
-
-def static_content(filepath):
-    return static_file(filepath, root='./')
+@route("/static/<filename>")
+def static_content(filename):
+    return static_file(filename, root='./static')
 def add_ip():
     global ips
     global new_ip
