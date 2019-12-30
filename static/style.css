@@ -33,7 +33,7 @@
                 transform: translate(-50%, -50%)
             }
             header {
-                background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(comp2.jpg);
+                background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/images/comp2.jpg);
                 height: 100vh;
                 background-size: cover;
                 background-position: center;
