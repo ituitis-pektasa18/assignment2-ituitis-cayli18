@@ -6,7 +6,7 @@
   <body>
 	
 	<div>
-		<form action="/passwordcheck" method="post">
+		<form action="/password" method="post">
 			{{info}}
 			<h1>Password here!</h1>
 			<div class="textbox">
