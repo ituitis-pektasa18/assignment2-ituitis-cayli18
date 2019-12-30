@@ -7,30 +7,22 @@ def create_hash(password):
     pw_bytestring = password.encode()
     return sha256(pw_bytestring).hexdigest()
 ips = []
+
 def static_content(filepath):
     return static_file(filepath, root='./')
-def add_ip(a):
+def add_ip():
     global ips
-    if a in ips:
-        ips[a] += 1
+    global new_ip
+    if new_ip in ips:
+        ips[new_ip] += 1
     else:
-        ips[a] = 1
+        ips[new_ip] = 1
 def home():
+    global new_ip
     new_ip = request.headers.get("X-Forwarded-For", "127.0.0.1")
     global ips
-    add_ip(new_ip)
-    tablecontent ='''
-    <!DOCTYPE html>
-    <html>
-        <body>
-            <tr>
-                <td>%s (new_ip) %s </td>
-                <td>%s (ips[new_ip]) %s </td>
-            </tr>
-        </body>
-    </html>
-    '''
-    return tablecontent
+    add_ip()
+    return template('index2', iplist=ips)
 def get_edu():
     return Path("index1.html").read_text()
 def create_app():
