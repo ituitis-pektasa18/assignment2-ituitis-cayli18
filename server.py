@@ -7,7 +7,6 @@ def create_hash(password):
     pw_bytestring = password.encode()
     return sha256(pw_bytestring).hexdigest()
 ips = []
-@route("/static/<filename>")
 def static_content(filename):
     return static_file(filename, root='./')
 def add_ip():
@@ -31,7 +30,7 @@ def create_app():
     app = Bottle()
     app.route("/", "GET", home)
     app.route("/index1.html", "GET", get_edu)
-    app.route("/static/<filepath:path>", "GET", static_content)
+    app.route("/static/<filename>", "GET", static_content)
     return app
 
 ips = {}
