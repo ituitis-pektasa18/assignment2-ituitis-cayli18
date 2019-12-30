@@ -30,7 +30,7 @@ def get_edu():
 def create_app():
     app = Bottle()
     app.route("/", "GET", home)
-    app.route("/login", "GET", get_edu)
+    app.route("/index1.html", "GET", get_edu)
     app.route("/static/<filepath:path>", "GET", static_content)
     return app
 
