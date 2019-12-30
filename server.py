@@ -23,8 +23,8 @@ def password_page():
 def enter_password():
     password = request.forms.get('pw')
     if create_hash(password)==user_password:
-        global ip
-        ip = {}
+        global ips
+        ips = {}
         return template('password', info='Congrats list cleared.')
     else:
         return template('password', info='Password is wrong, please try again.')
