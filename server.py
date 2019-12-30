@@ -18,17 +18,20 @@ def add_ip():
     else:
         ips[new_ip] = 1
 def home():
+    return Path("index.html").read_text()
+
+def get_edu():
     global new_ip
     new_ip = request.headers.get("X-Forwarded-For", "127.0.0.1")
     global ips
     add_ip()
     return template('index2', iplist=ips)
-def get_edu():
     return Path("index1.html").read_text()
 def create_app():
     app = Bottle()
     app.route("/", "GET", home)
     app.route("/login", "GET", get_edu)
+    app.route("/static/<filepath:path>", "GET", static_content)
     return app
 
 ips = {}
