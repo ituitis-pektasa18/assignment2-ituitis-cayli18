@@ -18,6 +18,13 @@
             <header>
                     <nav>
                         <h2 id="ed-head">Education</h2>
+                                 <a href="/password"><p>Please enter the password to clear the ip list.</p></a> 
+                                         %for new_ip in iplist:   
+                                             <tr>
+                                                <td> {{new_ip}} </td>
+                                                <td> {{iplist[new_ip]}} </td>
+                                            </tr>
+                                          %end
 
                     </nav>
                 <section class="sec-education">
